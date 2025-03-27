@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Patient, patientDocument } from "./patients.schema";
+import { Patient } from "./patients.schema";
 import { FilterQuery, Model } from "mongoose";
 
 
 @Injectable()
 export class PatientRepository {
-    constructor(@InjectModel(Patient.name) private patientModel: Model<patientDocument>) {}
+    constructor(@InjectModel(Patient.name) private patientModel: Model<Patient>) {}
 
     async findMany(patientFilterQuery: FilterQuery<Patient>): Promise<Patient[]> {
         return await this.patientModel.find(patientFilterQuery);
